@@ -22,6 +22,9 @@ class LibxmlConan(ConanFile):
     source_subfolder = "source_subfolder"
     build_subfolder = "build_subfolder"
 
+    def configure(self):
+        del self.settings.compiler.libcxx
+
     def source(self):
         tools.get("http://ijg.org/files/jpegsrc.v%s.tar.gz" % self.version)
         os.rename("jpeg-" + self.version, self.source_subfolder)
