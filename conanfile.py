@@ -18,7 +18,7 @@ class LibxmlConan(ConanFile):
         "patches/jconfig.h.cmake",
         "patches/jpegdll.def"
     ]
-    url = "https://gitlab.lan.local/conan/conan-libjpeg"
+    url = "https://git.ircad.fr/conan/conan-libjpeg"
     source_subfolder = "source_subfolder"
     build_subfolder = "build_subfolder"
 
