@@ -7,7 +7,9 @@ from conans import CMake, ConanFile, tools
 
 class LibxmlConan(ConanFile):
     name = "libjpeg"
-    version = "9c"
+    package_revision = "-r1"
+    upstream_version = "9c"
+    version = "{0}{1}".format(upstream_version, package_revision)
     description = "Libjpeg is a widely used C library for reading and writing JPEG image files."
     generators = "cmake"
     settings =  "os", "compiler", "arch", "build_type"
@@ -26,8 +28,8 @@ class LibxmlConan(ConanFile):
         del self.settings.compiler.libcxx
 
     def source(self):
-        tools.get("http://ijg.org/files/jpegsrc.v%s.tar.gz" % self.version)
-        os.rename("jpeg-" + self.version, self.source_subfolder)
+        tools.get("http://ijg.org/files/jpegsrc.v%s.tar.gz" % self.upstream_version)
+        os.rename("jpeg-" + self.upstream_version, self.source_subfolder)
 
     def build(self):
         libjpeg_source_dir = os.path.join(self.source_folder, self.source_subfolder)
