@@ -35,17 +35,18 @@ class LibxmlConan(ConanFile):
         os.rename("jpeg-" + self.upstream_version, self.source_subfolder)
 
     def build(self):
-        #Import common flags and defines
+        # Import common flags and defines
         import common
+
         libjpeg_source_dir = os.path.join(self.source_folder, self.source_subfolder)
         shutil.move("patches/CMakeLists.txt", "%s/CMakeLists.txt" % libjpeg_source_dir)
         shutil.move("patches/jconfig.h.cmake", "%s/jconfig.h.cmake" % libjpeg_source_dir)
         shutil.move("patches/jpegdll.def", "%s/jpegdll.def" % libjpeg_source_dir)
         cmake = CMake(self)
         
-        #Set common flags
-        cmake.definitions["CMAKE_C_FLAGS"] = common.get_c_flags()
-        cmake.definitions["CMAKE_CXX_FLAGS"] = common.get_cxx_flags()
+        # Set common flags
+        cmake.definitions["SIGHT_CMAKE_C_FLAGS"] = common.get_c_flags()
+        cmake.definitions["SIGHT_CMAKE_CXX_FLAGS"] = common.get_cxx_flags()
         
         if tools.os_info.is_linux:
             cmake.definitions['CMAKE_POSITION_INDEPENDENT_CODE'] = "ON"

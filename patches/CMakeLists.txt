@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(jpeg C)
 
+include(../conanbuildinfo.cmake)
+conan_basic_setup()
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${SIGHT_CMAKE_C_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${SIGHT_CMAKE_CXX_FLAGS}")
+
 include(CheckIncludeFile)
 check_include_file(stddef.h HAVE_STDDEF_H)
 check_include_file(stdlib.h HAVE_STDLIB_H)
