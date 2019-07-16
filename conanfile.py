@@ -28,7 +28,7 @@ class LibxmlConan(ConanFile):
         del self.settings.compiler.libcxx
 
     def requirements(self):
-        self.requires("common/1.0.0@sight/stable")
+        self.requires("ircad_common/1.0.0@camposs/stable")
 
     def source(self):
         tools.get("http://ijg.org/files/jpegsrc.v%s.tar.gz" % self.upstream_version)
